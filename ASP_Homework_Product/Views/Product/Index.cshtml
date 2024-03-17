@@ -1,0 +1,16 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = $"{Model.Name}";
+}
+
+<div class = "card-body">
+    <img class = "card-mg-top" src = "/images/@Model.ImageURL"></img>
+    @*<a style: "color: black" href = "product/index/@Model.Id"><h4>@Model.Name</h4></a>*@
+    <h4>@Model.Name</h4>
+    <h5>@Model.Cost</h5>
+    <h4>@Model.Description</h4>
+    @*<a class = "btn btn-dark" href = "/home/index">Продолжить покупки</a>*@
+    <a class = "btn btn-dark" href = "@Url.Action("Index", "Home")" role = "button">Продолжить покупки</a>
+    <a class = "btn btn-dark" href = "#" role = "button">Добавить в корзину</a>
+</div>
