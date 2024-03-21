@@ -12,5 +12,5 @@
     <h4>@Model.Description</h4>
     @*<a class = "btn btn-dark" href = "/home/index">Продолжить покупки</a>*@
     <a class = "btn btn-dark" href = "@Url.Action("Index", "Home")" role = "button">Продолжить покупки</a>
-    <a class = "btn btn-dark" href = "#" role = "button">Добавить в корзину</a>
+    <a class = "btn btn-dark" href = "@Url.Action("Index", "Basket", Model)" role = "button">Добавить в корзину</a>
 </div>

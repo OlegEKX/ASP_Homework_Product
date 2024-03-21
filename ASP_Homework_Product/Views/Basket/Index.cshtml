@@ -32,6 +32,8 @@
           <th>Название товара</th>
           <th>Количество товара</th>
           <th>Стоимость товара</th>
+          <th></th>
+          <th></th>
       </tr>
   </thead>
   <tbody>
@@ -78,6 +80,7 @@
                     <td>@item.Name</td>
                     <td>@countOfItems[item.Id]</td>
                     <td>@item.Cost</td>
+                    <td><a class = "btn btn-dark" href = "basket/subtract/item.Id" role = "button">-</a></td>
                 </tr>
             }
         }
