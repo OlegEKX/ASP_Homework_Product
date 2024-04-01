@@ -1,5 +1,7 @@
 ﻿@model Basket
-
+@{
+	int summ = 0;
+}
 @if (Model == null)
 {
 	<h2>Корзина пустая</h2>
@@ -8,14 +10,14 @@ else
 {
 	<div class = "row">
 		<div class = "col">
-			<table>
+			<table class = "table">
 				<thead>
 
 					<tr>
 						<th>Название</th>
-						<th>Цена</th>
+						<th>Цена руб.</th>
 						<th>Количество</th>
-						<th>Стоимость</th>
+						<th>Стоимость руб.</th>
 					</tr>
 					
 				</thead>
@@ -25,13 +27,24 @@ else
 					{
 						<tr>
 							<td>@item.Product.Name</td>
-							<td>@item.Product.Cost</td>
+							<td>@item.Product.Cost руб.</td>
 							<td>@item.Amount</td>
-							<td>@item.Cost</td>
+							<td>@item.Cost руб.</td>
 						</tr>
 					}
 				</tbody>
 			</table>
+			<div class = "text-right">
+				<h4>
+					Итого:
+				</h4>
+				<h5>@Model.Cost Руб.</h5>
+
+				<div class = "text-left">
+					<a class = "btn btn-dark" href = "/home/index" role = "button">Продолжить покупки</a>
+					<a class = "btn btn-dark" href = "#" role = "button">Оформить заказ</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	
