@@ -6,16 +6,18 @@ using ASP_Homework_Product.Models;
 
 namespace ASP_Homework_Product
 {
-    public static class BasketStorage
+    // убрал static у класса
+    public class BasketStorage
     {
-        private static List<Basket> carts = new List<Basket>();
+		
+		private List<Basket> carts = new List<Basket>();
 
-        public static Basket TryGetByUserId(string userId)
+        public Basket TryGetByUserId(string userId)
         {
             return carts.FirstOrDefault(x => x.UserId == userId);
         }
 
-        public static void Add(Product product, string userId)
+        public void Add(Product product, string userId)
         {
             var existingBasket = TryGetByUserId(userId);
             if (existingBasket == null)
