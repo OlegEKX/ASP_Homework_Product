@@ -1,10 +1,9 @@
 ﻿@model Basket
-@{
-	int summ = 0;
-}
+
 @if (Model == null)
 {
 	<h2>Корзина пустая</h2>
+	<a class = "btn btn-dark" href = "/home/index" role = "button">Продолжить покупки</a>
 }
 else
 {
@@ -18,6 +17,8 @@ else
 						<th>Цена руб.</th>
 						<th>Количество</th>
 						<th>Стоимость руб.</th>
+						<th></th>
+						<th></th>
 					</tr>
 					
 				</thead>
@@ -30,6 +31,11 @@ else
 							<td>@item.Product.Cost руб.</td>
 							<td>@item.Amount</td>
 							<td>@item.Cost руб.</td>
+							<td><a class = "btn btn-dark" href = "/basket/add?productId=@item.Product.Id" role = "button"> + </a></td>
+							<td><a class = "btn btn-dark" href = "/basket/remove?productId=@item.Product.Id" role = "button"> - </a></td>
+							
+							@*<td><a class = "btn btn-dark" href = "/basket/append?productId=@item.Product.Id" role = "button"> + </a></td>*@
+
 						</tr>
 					}
 				</tbody>
@@ -43,6 +49,7 @@ else
 				<div class = "text-left">
 					<a class = "btn btn-dark" href = "/home/index" role = "button">Продолжить покупки</a>
 					<a class = "btn btn-dark" href = "#" role = "button">Оформить заказ</a>
+					<a class = "btn btn-dark" href = "/basket/clear" role = "button"></a>
 				</div>
 			</div>
 		</div>

@@ -11,5 +11,7 @@ namespace ASP_Homework_Product
 		List<Basket> carts { get; }
 		Basket TryGetByUserId(string userId);
 		void Add(Product product, string userId);
+		void Remove(Product product, string userid);
+		void Clear(string userId);
 	}
 }

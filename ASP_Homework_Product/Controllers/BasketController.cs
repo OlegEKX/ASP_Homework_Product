@@ -27,5 +27,25 @@ namespace ASP_Homework_Product.Controllers
 			basketStorage.Add(product, constants.UserId);
             return RedirectToAction("Index");
         }
+        public IActionResult Remove(int productId)
+        {
+            var product = productStorage.TryGetById(productId);
+            basketStorage.Remove(product, constants.UserId);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Clear()
+        {
+            basketStorage.Clear(constants.UserId);
+            return RedirectToAction("Index");
+        }
+
+        //думал создать дополнительный иетод для добавления товара в корзину по кнопке "+"
+        /*public IActionResult Append(int productId)
+        {
+            var product = productStorage.TryGetById(productId);
+            basketStorage.Add(product, constants.UserId);
+            return RedirectToAction("Index");
+        }*/
     }
 }

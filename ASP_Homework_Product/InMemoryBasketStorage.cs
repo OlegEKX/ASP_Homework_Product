@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using ASP_Homework_Product.Models;
 
 namespace ASP_Homework_Product
@@ -63,8 +64,33 @@ namespace ASP_Homework_Product
                 }
             }
 
+           
 
-            
         }
-    }
+
+
+		// для прибавки и удаления товара, который уже был добавлен в корзину
+		public void Remove(Product product, string userid)
+		{
+            var existingBasket = TryGetByUserId(userid);
+            var existingBasketItem = existingBasket.Items.FirstOrDefault(item => item.Product.Id == product.Id);
+
+            existingBasketItem.Amount--;
+
+			if (existingBasketItem.Amount == 0)
+            {
+                existingBasket.Items.Remove(existingBasketItem);
+            }
+            if (existingBasket.Items.Count == 0)
+            {
+                carts.Remove(existingBasket);
+            }
+		}
+
+        public void Clear(string userId)
+        {
+            var existingBasket = TryGetByUserId(userId);
+            carts.Remove(existingBasket);
+		}
+	}
 }
