@@ -18,9 +18,9 @@ namespace ASP_Homework_Product.Controllers
             _logger = logger;
         }*/
 
-        private readonly ProductStorage productStorage;
+        private readonly IProductStorage productStorage;
 
-        public HomeController(ProductStorage productStorage)
+        public HomeController(IProductStorage productStorage)
         {
             this.productStorage = productStorage;
         }

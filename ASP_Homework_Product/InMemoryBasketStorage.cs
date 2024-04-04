@@ -7,10 +7,15 @@ using ASP_Homework_Product.Models;
 namespace ASP_Homework_Product
 {
     // убрал static у класса
-    public class BasketStorage
-    {
+    public class InMemoryBasketStorage : IBasketStorage
+	{
 		
-		private List<Basket> carts = new List<Basket>();
+		private List<Basket> firstCarts = new List<Basket>();
+
+        public List<Basket> carts
+        {
+            get { return firstCarts; }
+        }
 
         public Basket TryGetByUserId(string userId)
         {

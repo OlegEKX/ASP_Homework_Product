@@ -5,7 +5,7 @@ using ASP_Homework_Product.Models;
 
 namespace ASP_Homework_Product
 {
-    public class ProductStorage
+    public class InMemoryProductStorage : IProductStorage
     {
 
 
@@ -23,6 +23,14 @@ namespace ASP_Homework_Product
 			new Product("Компрессор", 50000, "Компрессор от М113", "Компрессор.jpeg"),
 			new Product("Двигатель м113", 200000, "тяга бешенная", "Двигатель.jpeg")
 		};
+
+        public List<Product> firstProducts
+        {
+            get
+            {
+                return products;
+            }
+        }
 
 		public List<Product> GetProducts()
         {

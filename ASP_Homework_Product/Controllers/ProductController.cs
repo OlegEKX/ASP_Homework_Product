@@ -5,9 +5,9 @@ namespace ASP_Homework_Product.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductStorage productStorage;
+        private readonly IProductStorage productStorage;
 
-        public ProductController(ProductStorage productStorage)
+        public ProductController(IProductStorage productStorage)
         {
             this.productStorage = productStorage;
         }

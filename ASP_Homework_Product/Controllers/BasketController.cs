@@ -5,11 +5,11 @@ namespace ASP_Homework_Product.Controllers
 {
     public class BasketController : Controller
     {
-        private readonly ProductStorage productStorage;
-        private readonly BasketStorage basketStorage;
-        private readonly Constants constants;
+        private readonly IProductStorage productStorage;
+        private readonly IBasketStorage basketStorage;
+        private readonly IConstants constants;
 
-        public BasketController(ProductStorage productStorage, BasketStorage basketStorage, Constants constants)
+        public BasketController(IProductStorage productStorage, IBasketStorage basketStorage, IConstants constants)
         {
             this.productStorage = productStorage;
             this.basketStorage = basketStorage;
