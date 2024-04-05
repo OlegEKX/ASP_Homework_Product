@@ -40,6 +40,12 @@ namespace ASP_Homework_Product.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Purchase()
+        {
+            basketStorage.Clear(constants.UserId);
+            return View();
+        }
+
         //думал создать дополнительный иетод для добавления товара в корзину по кнопке "+"
         /*public IActionResult Append(int productId)
         {
