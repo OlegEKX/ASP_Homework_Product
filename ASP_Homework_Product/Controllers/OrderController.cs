@@ -11,6 +11,13 @@ namespace ASP_Homework_Product.Controllers
 {
 	public class OrderController : Controller
 	{
+		private readonly IBasketStorage basketStorage;
+
+		public OrderController(IBasketStorage basketStorage)
+		{
+			this.basketStorage = basketStorage;
+		}
+
 		public IActionResult Index()
 		{
 			return View();

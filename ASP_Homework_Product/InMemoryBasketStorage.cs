@@ -20,7 +20,7 @@ namespace ASP_Homework_Product
 
         public Basket TryGetByUserId(string userId)
         {
-            return carts.FirstOrDefault(x => x.UserId == userId);
+            return carts.FirstOrDefault(idX => idX.UserId == userId);
         }
 
         public void Add(Product product, string userId)
