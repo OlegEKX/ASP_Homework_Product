@@ -22,6 +22,7 @@ namespace ASP_Homework_Product
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IOrderStorage, InMemoryOrderStorage>(); 
             services.AddSingleton<IBasketStorage, InMemoryBasketStorage>();
             services.AddSingleton<IConstants, InMemoryConstants>();
             services.AddSingleton<IProductStorage, InMemoryProductStorage>();
