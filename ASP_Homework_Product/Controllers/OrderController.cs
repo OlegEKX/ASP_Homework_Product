@@ -15,11 +15,13 @@ namespace ASP_Homework_Product.Controllers
 
 		private readonly IBasketStorage basketStorage;
 		private readonly IConstants constants;
+		private readonly IOrderStorage orderStorage;
 
-		public OrderController(IBasketStorage basketStorage, IConstants constants)
+		public OrderController(IBasketStorage basketStorage, IConstants constants, IOrderStorage orderStorage)
 		{
 			this.basketStorage = basketStorage;
 			this.constants = constants;
+			this.orderStorage = orderStorage;
 		}
 
 		public IActionResult Index()
@@ -28,8 +30,11 @@ namespace ASP_Homework_Product.Controllers
 			return View(basket);
 		}
 
-		public IActionResult MakeOrder()
+		[HttpPost]
+		public IActionResult MakeOrder(Order order)
 		{
+			Basket existingBasket = basketStorage.TryGetByUserId(constants.UserId);
+			orderStorage.Add(existingBasket);
 			basketStorage.Clear(constants.UserId);
 			return View("~/Views/Order/Success.cshtml");
 		}
