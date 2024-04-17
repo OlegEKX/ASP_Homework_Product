@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ASP_Homework_Product.Models;
+using Microsoft.VisualBasic;
 
 namespace ASP_Homework_Product.Controllers
 {
@@ -18,15 +19,21 @@ namespace ASP_Homework_Product.Controllers
             _logger = logger;
         }*/
 
+        private readonly IBasketStorage basketStorage;
         private readonly IProductStorage productStorage;
+        private readonly IConstants constants;
 
-        public HomeController(IProductStorage productStorage)
+        public HomeController(IProductStorage productStorage, IBasketStorage basketStorage, IConstants constants)
         {
             this.productStorage = productStorage;
+            this.basketStorage = basketStorage;
+            this.constants = constants;
         }
 
         public IActionResult Index()
         {
+            /*var basket = basketStorage.TryGetByUserId(constants.UserId);
+            ViewBag.ProductCount = basket?.Amount;*/
             /*List<Product> product = ProductStorage.GetProducts();*/
             var products = productStorage.GetProducts();
             return View(products);

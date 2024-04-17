@@ -92,5 +92,5 @@ namespace ASP_Homework_Product
             var existingBasket = TryGetByUserId(userId);
             carts.Remove(existingBasket);
 		}
-	}
+    }
 }

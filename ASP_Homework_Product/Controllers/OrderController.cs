@@ -28,7 +28,8 @@ namespace ASP_Homework_Product.Controllers
 			return View(basket);
 		}
 
-		public IActionResult MakeOrder()
+		[HttpPost]
+		public IActionResult MakeOrder(Order userOrder)
 		{
 			basketStorage.Clear(constants.UserId);
 			return View("~/Views/Order/Success.cshtml");
