@@ -4,6 +4,6 @@ namespace ASP_Homework_Product
 {
     public interface IOrderStorage
     {
-        void Add(Basket basket);
+        void Add(Order userOrder);
     }
 }

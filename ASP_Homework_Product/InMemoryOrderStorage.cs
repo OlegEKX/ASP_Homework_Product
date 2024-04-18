@@ -9,11 +9,11 @@ namespace ASP_Homework_Product
 {
     public class InMemoryOrderStorage : IOrderStorage
     {
-        public List<Basket> orders = new List<Basket>();
+        public List<Order> orders = new List<Order>();
 
-        public void Add(Basket basket)
+        public void Add(Order userOrder)
         {
-            orders.Add(basket);
+            orders.Add(userOrder);
         }
     }
 }
