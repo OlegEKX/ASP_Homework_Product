@@ -24,6 +24,7 @@ namespace ASP_Homework_Product.Controllers
 
         public IActionResult AddNewUser(User userData)
         {
+            //return
             return Redirect("/Home/Index");
         }
     }
