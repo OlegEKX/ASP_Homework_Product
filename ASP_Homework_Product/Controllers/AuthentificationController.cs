@@ -16,5 +16,15 @@ namespace ASP_Homework_Product.Controllers
         {
             return Redirect("/Home/Index");
         }
+
+        public IActionResult Registration()
+        {
+            return View();
+        }
+
+        public IActionResult AddNewUser(User userData)
+        {
+            return Redirect("/Home/Index");
+        }
     }
 }
