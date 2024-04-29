@@ -1,0 +1,39 @@
+﻿@{
+	ViewData["Title"] = "Добавление товара";
+}
+
+<h3 class="text-center">Редактирование товара</h3>
+<form method="post">
+	<div class="row">
+		<label for="name" class="col-sm-2 col-form-label">Название товара:</label>
+		<div class="col-sm-8">
+			<input name="Name" type="text" class="form-control" id="name" />
+		</div>
+	</div>
+
+	<div class="row">
+		<label for="cost" class="col-sm-2 col-form-label">Цена товара:</label>
+		<div class="col-sm-8">
+			<input name="Cost" type="text" class="form-control" id="cost" />
+		</div>
+	</div>
+
+	<div class="row">
+		<label for="ImageURL" class="col-sm-2 col-form-label">Изображение товара</label>
+		<div class="col-sm-8">
+			<input name="ImageURL" type="text" class="form-control" id="ImageURL" />
+		</div>
+	</div>
+
+	<div class="row">
+		<label for="Description" class="col-sm-2 col-form-label">Описание товара:</label>
+		<div class="col-sm-8">
+			<input name="Description" type="text" class="form-control" id="description" />
+		</div>
+	</div>
+
+	<br />
+	<br />
+	<button type="submit" class="btn btn-primary" asp-area="" asp-controller="Product" asp-action="Add">Сохранить</button>
+	<button class="btn btn-primary" asp-controller="Administrator" asp-action="Products">Отмена</button>
+</form>

@@ -3,11 +3,11 @@
     public class Product
     {
         private static int unicId = 0;
-        public int Id { get; }
-        public string Name { get; }
-        public int Cost { get; }
-        public string Description { get; }
-        public string ImageURL { get; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Cost { get; set; }
+        public string Description { get; set; }
+        public string ImageURL { get; set; }
 
         public Product(string name, int cost, string description, string imageUrl)
         {

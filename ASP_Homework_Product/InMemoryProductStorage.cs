@@ -48,5 +48,19 @@ namespace ASP_Homework_Product
             }
             return null;
         }
+
+        public void Del(int id)
+        {
+            var product = TryGetById(id);
+            products.Remove(product);
+
+            /*foreach (var item in products)
+            {
+                if (item.Id == id)
+                {
+                    products.Remove(item);
+                }
+            }*/
+        }
     }
 }

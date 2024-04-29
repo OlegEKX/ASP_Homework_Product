@@ -4,6 +4,15 @@ namespace ASP_Homework_Product.Controllers
 {
     public class AdministratorController : Controller
     {
+
+        private readonly IProductStorage productStorage;
+
+        public AdministratorController(IProductStorage productStorage)
+        {
+            this.productStorage = productStorage;
+        }
+
+
         /*public IActionResult Index()
         {
             return View();
@@ -26,7 +35,8 @@ namespace ASP_Homework_Product.Controllers
 
         public IActionResult Products()
         {
-            return View();
+            var products = productStorage.GetProducts();
+            return View(products);
         }
     }
 }

@@ -9,5 +9,6 @@ namespace ASP_Homework_Product
 		List<Product> GetProducts();
 
 		Product TryGetById(int id);
+		void Del(int id);
 	}
 }

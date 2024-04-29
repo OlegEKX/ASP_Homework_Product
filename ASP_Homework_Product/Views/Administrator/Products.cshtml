@@ -1,4 +1,9 @@
-﻿<div class="row">
+﻿@model List<Product>
+@{
+	ViewData["Title"] = "Список продуктов";
+	//int j = 0;
+}
+<div class="row">
 	<div class="col-3 text-left">
 		<br />
 		<a asp-area="" asp-controller="Administrator" asp-action="Orders">Заказы</a>
@@ -10,8 +15,44 @@
 		<a asp-area="" asp-controller="Administrator" asp-action="Products">Продукты</a>
 
 	</div>
-	<div class="col-9 text-center">
+	<div class="col-9">
 
-		<h4>Список Продуктов</h4>
+		<h4 class="text-center">Список Продуктов</h4>
+		<div>
+			<a class="align-self-start btn btn-outline-warning" role="button" asp-area="" asp-controller = "Product" asp-action="Add">Добавить новый продукт</a>
+
+			<div class = "row">
+				<div class = "col">
+					<table class = "table">
+						<thead>
+							<tr>
+								<th>№</th>
+								<th>Название</th>
+								<th>Цена</th>
+								@*остальные столбцы для полноты вида таблицы*@
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							@for(int i = 0; i < Model.Count; i++)
+							{
+								int j = i;
+								j++;
+								<tr>
+									<td>@(j)</td>
+									<td><a class="btn-link" asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Model[i].Id">@Model[i].Name</a></td>
+									<td>@Model[i].Cost</td>
+									<td><a class="btn-link" asp-area="" asp-controller = "Product" asp-action = "Edit" asp-route-id = "@Model[i].Id">Редактировать</a></td>
+									<td><a class="btn-link" asp-area="" asp-controller="Product" asp-action="Del" asp-route-id = "@Model[i].Id">Удалить</a></td>
+								</tr>
+							}
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
