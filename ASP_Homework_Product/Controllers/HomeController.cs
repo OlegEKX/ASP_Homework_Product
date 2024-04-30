@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ASP_Homework_Product.Models;
 using Microsoft.VisualBasic;
+using System.Xml.Linq;
 
 namespace ASP_Homework_Product.Controllers
 {
@@ -49,5 +50,32 @@ namespace ASP_Homework_Product.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpPost]
+        public IActionResult Search(string word)
+        {
+
+            if (word != null)
+            {
+				List<Product> products = productStorage.GetProducts();
+
+				var findProducts = products.Where(product => product.Name.ToLower().Contains(word.ToLower())).ToList();
+                return View(findProducts);
+			}
+			return RedirectToAction("Index");
+
+			/*foreach (var item in products)
+            {
+                if (item.Name.ToLower() == word.ToLower())
+                {
+                    return RedirectToAction("Index", "Product");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }*/
+
+		}
     }
 }
