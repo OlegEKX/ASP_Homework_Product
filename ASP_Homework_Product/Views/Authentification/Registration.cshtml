@@ -1,23 +1,57 @@
-﻿<form method="post">
+﻿@model User
+
+<form method="post" asp-controller="Authentification" asp-action="AddNewUser">
     <h4>Регистрация</h4>
     <br />
-    <div class="row mb-3">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+
+    <div>
+        <label asp-for="Login">email</label><br/>
+        <input type="email" asp-for="Login" />
+        <span asp-validation-for="Login"></span>
+    </div>
+
+
+    @*<div class="row mb-3">
         <label for="login" class="col-sm-1 col-form-label">Логин</label>
         <div class="col-sm-3">
-            <input name="Login" type="email" class="form-control" id="login" placeholder="Email">
+            <input name="Login" type="email" class="form-control" id="login" placeholder="Email" required>
         </div>
+    </div>*@
+
+    <div>
+        <label asp-for="Password">Пароль</label><br />
+        <input type="password" asp-for="Password" />
+        <span asp-validation-for="Password"></span>
     </div>
-    <div class="row mb-3">
+
+    @*<div class="row mb-3">
         <label for="password" class="col-sm-1 col-form-label">Пароль</label>
         <div class="col-sm-3">
-            <input name="Password" type="password" class="form-control" id="password" placeholder="*********">
+            <input name="Password" type="password" class="form-control" id="password" placeholder="*********" required minlength="3" maxlength="20" />
         </div>
+    </div>*@
+
+    <div>
+        <label asp-for="RepeatPassword">Повторите пароль</label><br />
+        <input type="password" asp-for="RepeatPassword" />
+        <span asp-validation-for="RepeatPassword"></span>
     </div>
-    <div class="row mb-3">
+
+    @*<div class="row mb-3">
         <label for="password" class="col-sm-1 col-form-label">Повторите пароль</label>
         <div class="col-sm-3">
-            <input name="RepeatPassword" type="password" class="form-control" id="password" placeholder="*********">
+            <input name="RepeatPassword" type="password" minLength="3" maxlength="20" class="form-control" id="password" placeholder="*********" required>
         </div>
-    </div>
+    </div>*@
+
+
+
     <button type="submit" class="btn btn-outline-primary" asp-controller="Authentification" asp-action="AddNewUser">Зарегистрироваться</button>
 </form>
+
+@*@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}*@ @*Для валидации на стороне клиента (Теперь закоменченныйЮ потому что подключены через частичное представление)*@

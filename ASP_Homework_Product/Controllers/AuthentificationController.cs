@@ -24,8 +24,17 @@ namespace ASP_Homework_Product.Controllers
 
         public IActionResult AddNewUser(User userData)
         {
-            //return
-            return Redirect("/Home/Index");
-        }
+            if (userData.Login == userData.Password)
+            {
+                ModelState.AddModelError("", "Логин и пароль не должны совпадать");
+            }
+
+            if (ModelState.IsValid)
+            {
+				return Redirect("/Home/Index");
+			}
+			return Redirect("/Home/Index");
+			//return Redirect("/Home/Index");
+		}
     }
 }
