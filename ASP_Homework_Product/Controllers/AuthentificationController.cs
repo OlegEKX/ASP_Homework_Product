@@ -6,15 +6,20 @@ namespace ASP_Homework_Product.Controllers
     public class AuthentificationController : Controller
     {
         
-        public IActionResult Index()
+        public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Enter(User UserData)
+        public IActionResult Enter(Login UserData)
         {
-            return Redirect("/Home/Index");
+            if (ModelState.IsValid)
+            {
+				return Redirect("/Home/Index");
+			}
+
+            return RedirectToAction("Login");
         }
 
         public IActionResult Registration()
@@ -22,18 +27,20 @@ namespace ASP_Homework_Product.Controllers
             return View();
         }
 
-        public IActionResult AddNewUser(User userData)
+        public IActionResult AddNewUser(Register userData)
         {
-            if (userData.Login == userData.Password)
-            {
-                ModelState.AddModelError("", "Логин и пароль не должны совпадать");
-            }
-
-            if (ModelState.IsValid)
-            {
-				return Redirect("/Home/Index");
+			if (userData.UserName == userData.Password)
+			{
+				ModelState.AddModelError("", "Логин и пароль не должны совпадать");
 			}
-			return Redirect("/Home/Index");
+
+			if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Registration");
+
+
 			//return Redirect("/Home/Index");
 		}
     }
