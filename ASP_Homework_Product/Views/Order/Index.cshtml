@@ -1,4 +1,5 @@
-﻿@model Basket
+﻿@*@model Basket*@
+@model Order
 
 @{
 	ViewData["Title"] = "Оформление заказа";
@@ -19,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Items)
+                @foreach (var item in Model.Basket.Items)
                 {
                         <tr>
                             <td>@item.Product.Name</td>
@@ -33,7 +34,7 @@
             </tbody>
         </table>
         <div class="text-end">
-            <h6>Итого: @Model.Cost руб.</h6>
+            <h6>Итого: @Model.Basket.Cost руб.</h6>
         </div>       
     </div>
     <div class="col-1"></div>
@@ -43,22 +44,52 @@
     @*форма данных покупателя*@
     <div class="col-6 card shadow-lg">
         <form method="post">
+
+            <div class="text-danger font-weight-bold" asp-validation-summary="All"></div>
+
             <div class="form-group" style="margin:10px">
+                <label asp-for="FullName"></label>
+                <input type="text" asp-for="FullName" class="form-control" name="fullName" id="exampleFormControlInput1" placeholder="Ярлынский Олег Васильевич" />
+                <span asp-validation-for="FullName"></span>
+            </div>
+
+
+            @*<div class="form-group" style="margin:10px">
                 <label for="exampleFormControlInput1">ФИО*</label>
                 <input type="text" class="form-control" name="fullName" id="exampleFormControlInput1" placeholder="Ярлынский Олег Васильевич">
-            </div>
+            </div>*@
+
+
             <div class="form-group" style="margin:10px">
+                <label asp-for="Email"></label>
+                <input type="email" asp-for="Email" class="form-control" name="email" id="exampleFormControlInput2" placeholder="name@example.com" />
+                <span asp-validation-for="Email"></span>
+            </div>
+
+            @*<div class="form-group" style="margin:10px">
                 <label for="exampleFormControlInput2">Email*</label>
                 <input type="email" class="form-control" name="email" id="exampleFormControlInput2" placeholder="name@example.com">
-            </div>
+            </div>*@
+
+
             <div class="form-group" style="margin:10px">
+                <label asp-for="Phone"></label>
+                <input type="tel" asp-for="Phone" class="form-control" name="phone" id="exampleFormControlInput3" placeholder="+7 (909) 009-2768" />
+                <span asp-validation-for="Phone"></span>
+            </div>
+
+            @*<div class="form-group" style="margin:10px">
                 <label for="exampleFormControlInput3">Телефон*</label>
                 <input type="tel" class="form-control" name="phone" id="exampleFormControlInput3" placeholder="+7 (909) 009-2768">
-            </div>   
+            </div> *@
+            
+
             <div class="form-group" style="margin:10px">
                 <label for="exampleFormControlInput4">Адрес*</label>
                 <input type="text" class="form-control" name="address" id="exampleFormControlInput4" placeholder="г. Краснодар, ул. Ленина, д. 48">
             </div>
+
+
             <div class="form-group" style="margin:10px">
                 <label for="exampleFormControlTextarea1">Комментарии к заказу</label>
                 <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>

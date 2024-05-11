@@ -27,6 +27,7 @@ namespace ASP_Homework_Product.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult AddNewUser(Register userData)
         {
 			if (userData.UserName == userData.Password)

@@ -26,19 +26,26 @@ namespace ASP_Homework_Product.Controllers
 
 		public IActionResult Index()
 		{
-			var basket = basketStorage.TryGetByUserId(constants.UserId);
-			return View(basket);
+			Order userData = new Order();
+			userData.Basket = basketStorage.TryGetByUserId(constants.UserId);
+            //var basket = basketStorage.TryGetByUserId(constants.UserId);
+			return View(userData);
 		}
 
 		[HttpPost]
 		public IActionResult MakeOrder(Order userDataAndOrder)
 		{
-            /*var basket*/
-            userDataAndOrder.Basket = basketStorage.TryGetByUserId(constants.UserId);
-			orderStorage.Add(userDataAndOrder);
+			if (ModelState.IsValid)
+			{
+                userDataAndOrder.Basket = basketStorage.TryGetByUserId(constants.UserId);
+                orderStorage.Add(userDataAndOrder);
 
-			basketStorage.Clear(constants.UserId);
-			return View(userDataAndOrder);
+                basketStorage.Clear(constants.UserId);
+                return View(userDataAndOrder);
+            }
+			return RedirectToAction("Index");
+            /*var basket*/
+            
 
 			//return View("~/Views/Order/Success.cshtml");
 		}
