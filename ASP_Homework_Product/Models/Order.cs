@@ -3,6 +3,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ASP_Homework_Product.Models
 {
+    public enum OrderStatuses
+    {
+		Created,
+		Processed,
+		Delivering,
+		Delivered,
+		Canceled
+	}
+
     public class Order
     {
         public Guid Id { get; set; }
@@ -19,5 +28,8 @@ namespace ASP_Homework_Product.Models
         [StringLength(100, MinimumLength = 20, ErrorMessage = "Введите адрес полностью")]
         public string Address { get; set; }
         public string Comment { get; set; }
+
+        public DateTime DateTime { get; set; }
+        public OrderStatuses OrderStatus { get; set; }
     }
 }

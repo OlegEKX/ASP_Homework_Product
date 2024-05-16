@@ -1,0 +1,95 @@
+﻿@model Order
+
+@{
+	ViewData["Title"] = "Заказ пользователя";
+}
+
+<div class="row">
+	<div class="col-3 text-left">
+		<br />
+		<a asp-area="" asp-controller="Administrator" asp-action="Orders">Заказы</a>
+		<br />
+		<a asp-area="" asp-controller="Administrator" asp-action="Users">Пользователи</a>
+		<br />
+		<a asp-area="" asp-controller="Administrator" asp-action="Roles">Роли</a>
+		<br />
+		<a asp-area="" asp-controller="Administrator" asp-action="Products">Продукты</a>
+
+	</div>
+
+	<div class="col-9 text-center">
+
+		<h4>Заказ пользователя: @Model.FullName</h4>
+
+		<form method="post">
+			<div>
+				<div class="row">
+					<div class="col">
+
+						<table class="table">
+
+							<tbody>
+								<tr>
+									<td>Дата и время оформления:</td>
+									<td>@Model.DateTime.ToShortDateString() в @Model.DateTime.ToShortTimeString()</td>
+								</tr>
+
+								<tr>
+									<td>Адрес доставки:</td>
+									<td>@Model.Address</td>
+								</tr>
+
+								<tr>
+									<td>Получатель:</td>
+									<td>@Model.FullName</td>
+								</tr>
+
+								<tr>
+									<td>Телефон:</td>
+									<td>@Model.Phone</td>
+								</tr>
+
+								<tr>
+									<td>Email:</td>
+									<td>@Model.Email</td>
+								</tr>
+
+								<tr>
+									<td>Комментарий:</td>
+									<td>@Model.Comment</td>
+								</tr>
+
+								<tr>
+									<td>Сумма заказа:</td>
+									<td>@Model.Basket.Cost</td>
+								</tr>
+
+								<tr>
+									<td>Статус заказа:</td>
+									<td>
+										<select class="form-select-sm" valuse="@Model.OrderStatus" name="Status">
+											<option value="@OrderStatuses.Created">Создан</option>
+											<option value="@OrderStatuses.Processed">Обработан</option>
+											<option value="@OrderStatuses.Delivering">В пути</option>
+											<option value="@OrderStatuses.Delivered">Доставлен</option>
+											<option value="@OrderStatuses.Canceled">Отменен</option>
+										</select>
+									</td>
+									<td><button type="submit" class="btn-outline-dark" asp-controller="Administrator" asp-action="EditStatus" asp-route-id="@Model.Id">Сохранить статус</button></td>
+									<td>
+										<a class="btn btn-outline-primary" asp-controller="Administrator" asp-action="Orders" >Отмена</a>
+									</td>
+								</tr>
+							</tbody>
+
+
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</form>
+
+		
+	</div>
+</div>

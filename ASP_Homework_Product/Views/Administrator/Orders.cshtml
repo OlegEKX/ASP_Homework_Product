@@ -1,4 +1,6 @@
-﻿<div class="row">
+﻿@model List<Order>
+
+<div class="row">
 	<div class="col-3 text-left">
 		<br />
 		<a asp-area="" asp-controller="Administrator" asp-action="Orders">Заказы</a>
@@ -10,8 +12,66 @@
 		<a asp-area="" asp-controller="Administrator" asp-action="Products">Продукты</a>
 		
 	</div>
-	<div class="col-9 text-center">
 
-		<h4>Список заказов</h4>
-	</div>
+	@if (Model.Count == 0)
+	{
+		<h3>Ни одного заказа пока не сделано.</h3>
+	}
+	else
+	{
+		<div class="col-9 text-center">
+
+			<h4>Список заказов</h4>
+
+			<div>
+
+				<div class="row">
+					<div class="col">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>№</th>
+									<th>Сумма</th>
+									<th>Статус</th>
+									<th>Пользователь(Логин)</th>
+									<th>Дата</th>
+									<th>Время</th>
+									<th></th>
+								</tr>
+							</thead>
+
+							<tbody>
+								@for (int i = 0; i < Model.Count; i++)
+								{
+									int j = i;
+									j++;
+									<tr>
+										<td>@j</td>
+										<td>@Model[i].Basket.Cost</td>
+										<td>
+											@switch (Model[i].OrderStatus)
+											{
+												case OrderStatuses.Created: <p>Создан</p>; break;
+												case OrderStatuses.Processed: <p>Обработан</p>; break;
+												case OrderStatuses.Delivering: <p>В пути</p>; break;
+												case OrderStatuses.Delivered: <p>Доставлен</p>; break;
+												case OrderStatuses.Canceled: <p>Отменен</p>; break;
+											}
+
+											@*@Model[i].OrderStatus*@</td>
+										<td>@Model[i].Email</td>
+										<td>@Model[i].DateTime.ToShortDateString()</td>
+										<td>@Model[i].DateTime.ToShortTimeString()</td>
+										<td><a style="text-underline-position:under" asp-controller="Administrator" asp-action="OrderInDetail" asp-route-id="@Model[i].Id">Изменить статус</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+
+	
 </div>
