@@ -1,17 +1,52 @@
-﻿<div class="row">
-	<div class="col-3 text-left">
-		<br />
-		<a asp-area="" asp-controller="Administrator" asp-action="Orders">Заказы</a>
-		<br />
-		<a asp-area="" asp-controller="Administrator" asp-action="Users">Пользователи</a>
-		<br />
-		<a asp-area="" asp-controller="Administrator" asp-action="Roles">Роли</a>
-		<br />
-		<a asp-area="" asp-controller="Administrator" asp-action="Products">Продукты</a>
+﻿@model List<Roles>
 
-	</div>
+<div class="row">
+	@await Html.PartialAsync("AdministratorPoints")
 	<div class="col-9 text-center">
 
 		<h4>Список Ролей</h4>
+
+		<div>
+			
+			@if (Model.Count == 0)
+			{
+				<p>На данный момент роли отсутствуют</p>
+				<form method="post">
+					<button class="btn-link" type="submit" asp-controller="Administrator" asp-action="AddRole">Добавить</button>
+				</form>
+			}
+			else
+			{
+				<form method="post">
+					<table class="table">
+						<tbody>
+
+							@for (int i = 0; i < Model.Count; i++)
+							{
+								<tr class="align-content-xl-between">
+									<td>@Model[i].Name</td>
+									<td><button type="submit" class="btn-link" asp-area="" asp-controller="Administrator" asp-action="DeleteRole" name="Name" asp-route-id="@i">Удалить</button></td>
+								</tr>
+							}
+
+							@*@foreach (var item in Model)
+							{
+								<tr class="align-content-xl-between">
+									<td>@item.Name</td>
+									<td><button type="submit" class="btn-link" asp-area="" asp-controller="Administrator" asp-action="DeleteRole" name="Name" value="@item.Name">Удалить</button></td>
+								</tr>
+							}*@
+
+						</tbody>
+					</table>
+
+					<button class="btn-link" type="submit" asp-controller="Administrator" asp-action="AddRole">Добавить</button>
+				</form>
+				
+			}
+
+			
+			
+		</div>
 	</div>
 </div>

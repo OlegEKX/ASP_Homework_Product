@@ -4,17 +4,8 @@
 	//int j = 0;
 }
 <div class="row">
-	<div class="col-3 text-left">
-		<br />
-		<a asp-area="" asp-controller="Administrator" asp-action="Orders">Заказы</a>
-		<br />
-		<a asp-area="" asp-controller="Administrator" asp-action="Users">Пользователи</a>
-		<br />
-		<a asp-area="" asp-controller="Administrator" asp-action="Roles">Роли</a>
-		<br />
-		<a asp-area="" asp-controller="Administrator" asp-action="Products">Продукты</a>
+	@await Html.PartialAsync("AdministratorPoints")
 
-	</div>
 	<div class="col-9">
 
 		<h4 class="text-center">Список Продуктов</h4>

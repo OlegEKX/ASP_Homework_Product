@@ -26,6 +26,7 @@ namespace ASP_Homework_Product
             services.AddSingleton<IBasketStorage, InMemoryBasketStorage>();
             services.AddSingleton<IConstants, InMemoryConstants>();
             services.AddSingleton<IProductStorage, InMemoryProductStorage>();
+            services.AddSingleton<IRolesStorage, InMemoryRolesStorage>();
             services.AddControllersWithViews();
         }
 

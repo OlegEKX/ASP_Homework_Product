@@ -15,12 +15,14 @@ namespace ASP_Homework_Product.Controllers
 
         private readonly IProductStorage productStorage;
         private readonly IOrderStorage orderStorage;
+        private readonly IRolesStorage rolesStorage;
 
-        public AdministratorController(IProductStorage productStorage, IOrderStorage orderStorage)
+        public AdministratorController(IProductStorage productStorage, IOrderStorage orderStorage, IRolesStorage rolesStorage)
         {
             this.productStorage = productStorage;
             this.orderStorage = orderStorage;
             // забыл добавить зависимость для IOrderStorage (Добавил и добавление в заказы произошло!!! УРА!!!)
+            this.rolesStorage = rolesStorage;
         }
 
 
@@ -56,7 +58,37 @@ namespace ASP_Homework_Product.Controllers
 
         public IActionResult Roles()
         {
+            var roles = rolesStorage.GetAllRoles();
+            return View(roles);
+        }
+        public IActionResult DeleteRole(int index)
+        {
+            var roles = rolesStorage.GetAllRoles();
+            roles.RemoveAt(index);
+            return RedirectToAction("Roles");
+        }
+
+        public IActionResult AddRole()
+        {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddRole(Roles role)
+        {
+            var roles = rolesStorage.GetAllRoles();
+
+            if (roles.FirstOrDefault(x => x.Name == role.Name) != null)
+            {
+                ModelState.AddModelError("", "Такая роль уже существует");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(role);
+            }
+
+            rolesStorage.Add(role);
+            return RedirectToAction("Roles");
         }
 
         public IActionResult Products()
