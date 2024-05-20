@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace ASP_Homework_Product
 {
@@ -41,6 +42,9 @@ namespace ASP_Homework_Product
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseSerilogRequestLogging(); // необходимо для логирования каждого запроса (какой запрос пришел, какой ответ отдали, за какое время отдали)
+
             app.UseStaticFiles();
 
             app.UseRouting();
